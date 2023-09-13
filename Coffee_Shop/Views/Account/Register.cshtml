@@ -1,0 +1,46 @@
+﻿@using Coffee_Shop.ViewModels
+
+@model RegisterViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="~/css/login.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
+
+
+ </head>
+<body>
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form  asp-controller="Account" asp-action="Register">
+                    <div asp-validation-summary="All" class="text-danger text-center"></div>
+                    <h2>Login</h2>
+                    <div class="inputbox">
+                                <input asp-for="Name" placeholder="Name" type="text"/>
+                            </div>
+                            <div class="inputbox">
+                                <input autocomplete="new-password" placeholder="Password" asp-for="Password"  type="password"/>
+                            </div>
+
+                            <div class="inputbox">
+                                <input autocomplete="new password" placeholder="Confirn password" asp-for="PasswordConfirm"  type="password" />
+                            </div>
+
+                            <button  type="submit" >Register</button>
+                    <div class="register">
+                        <p>Have a account? <a asp-controller="Account" asp-action="Login">Log in</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+ </body>
+ </html>

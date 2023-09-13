@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Order>
+
+@{
+    var sum = Coffee_Shop.Models.User.Basket.Where(x=>x.Name == User.Identity.Name).Sum(x => x.Product.Price);
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Coffe Website</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
+
+    <!-- Link to JS -->
+
+</head>
+<body>
+<!-- Navbar -->
+
+
+<!-- Products -->
+<section class="product" id="product">
+    <div class="heading">
+        <h2>Yours Orders</h2>
+         <div class="basket">
+                         
+                          <a asp-action="Index" asp-controller="Home"><i class='bx bx-home'></i></a>
+                        
+            
+        </div>
+    </div>
+        @foreach (var item in Model)
+        {
+            <div class="products-container">
+                <div class="box">
+                    <img src="@item.Product.Image" alt="">
+                    <h3>@item.Product.Name</h3>
+                    
+                    <div class="content">
+                        <span>$@item.Product.Price</span>
+
+
+                                    <form asp-action="DeleteOrder" method="post" asp-route-id=@item.Id>
+                                        <button  >Delete</button>
+
+                            </form>
+                            
+
+
+
+                    </div>
+                </div>
+
+            </div> 
+        }
+    <!-- Container -->
+
+
+</section>
+
+
+<footer>
+    <h2>Sum:@sum$</h2>
+</footer>
+
+</body>
+</html>
+

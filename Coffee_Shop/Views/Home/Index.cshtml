@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Coffe Website</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
+    <style>
+    
+    .swiper {
+      width: 240px;
+      height: 320px;
+    }
+
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .swiper-slide:nth-child(1n) {
+      background-color: rgb(206, 17, 17);
+    }
+
+    .swiper-slide:nth-child(2n) {
+      background-color: rgb(0, 140, 255);
+    }
+
+    .swiper-slide:nth-child(3n) {
+      background-color: rgb(10, 184, 111);
+    }
+
+    .swiper-slide:nth-child(4n) {
+      background-color: rgb(211, 122, 7);
+    }
+
+    .swiper-slide:nth-child(5n) {
+      background-color: rgb(118, 163, 12);
+    }
+
+    .swiper-slide:nth-child(6n) {
+      background-color: rgb(180, 10, 47);
+    }
+
+    .swiper-slide:nth-child(7n) {
+      background-color: rgb(35, 99, 19);
+    }
+
+    .swiper-slide:nth-child(8n) {
+      background-color: rgb(0, 68, 255);
+    }
+
+    .swiper-slide:nth-child(9n) {
+      background-color: rgb(218, 12, 218);
+    }
+
+    .swiper-slide:nth-child(10n) {
+      background-color: rgb(54, 94, 77);
+    }
+  </style>
+    <!-- Link to JS -->
+    <script src="~/js/main.js"></script>
+ </head>
+ <body>
+     <header>
+         <a href="#" class="logo">
+             <img src="/lib/logo.png" alt=""/>
+         </a>
+         <!--Menu-Ic-->
+            <i class="bx bx-menu" id="menu-icon"></i>
+            <!-- Links-->
+            <ul class="navbar">
+               
+                <li><a class="link" href="#home">Home</a></li>
+                <li><a class="link" href="#about">About</a></li>
+                <li><a class="link" href="#product">Popular</a></li>
+                <li><a class="link-prod" asp-controller="Product" asp-action="Index">Our Products</a></li>
+            </ul>
+            <!-- Icon -->
+            <div class="header-icon">
+               
+            
+                      @if(!User.Identity.IsAuthenticated)
+                {
+                        <a asp-controller="Account" asp-action="Login"><i class='bx bxs-log-in'></i></a>
+                }
+            @if (User.Identity.IsAuthenticated)
+                {
+                    <form method="post" asp-controller="Account" asp-action="Logout">
+                                    
+                                <input class="exit"  type="submit" value="Вихід" />
+                            </form>
+                             @* <a asp-controller="Account" asp-action="Logout"><i class='bx bx-exit'></i></a>*@
+                }
+
+            </div>
+           
+     </header>
+     <!-- Home -->
+     <section class="home" id="home">
+         <div class="home-text">
+             <h1>Start rout day <br>with coffee</h1>
+             <p>Indulge in the rich aromas and exquisite flavors that define our coffee experience</p>
+             <a asp-controller="Product" asp-action="Index" class="btn">Shop Now</a>
+         </div>
+         <div class="home-img">
+             <img src="~/lib/main.png" alt="">
+         </div>
+     </section>
+
+
+     <!-- About -->
+     <section class="about" id="about"> 
+         <div class="about-img">
+             
+             <img src="lib/about.jpg" alt="">
+         </div>
+         <div class="about-text">
+             <h2>Our History</h2>
+             <p>Once upon a time, in a bustling city known for its love of caffeine and culinary delights, a group of passionate coffee enthusiasts came together with a shared dream: to create a coffee restaurant that would redefine the coffee experience. Their journey began with a simple idea—to bring together the finest coffee beans from around the world and transform them into extraordinary concoctions that would delight the senses and captivate the taste buds.</p>
+
+             <a href="#" class="btn">Learn More</a>
+         </div>
+
+     </section>
+
+     <!-- Products -->
+     <section class="product" id="product">
+         <div class="heading">
+             <h2>Our popular products</h2>
+         </div>
+         
+     
+      <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="/lib/p1.png"/></div>
+      <div class="swiper-slide"><img src="/lib/p2.png"/></div>
+      <div class="swiper-slide"><img src="/lib/p3.png"/></div>
+      <div class="swiper-slide"><img src="/lib/p4.png"/></div>
+      <div class="swiper-slide"><img src="/lib/p5.png"/></div>
+     
+    </div>
+  </div>
+  </section>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      effect: "cards",
+      grabCursor: true,
+    });
+  </script>
+
+
+
+ </body>
+</html>
+

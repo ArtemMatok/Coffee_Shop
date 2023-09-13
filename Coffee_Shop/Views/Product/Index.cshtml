@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Product>
+
+
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Coffe Website</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
+
+    <!-- Link to JS -->
+    
+ </head>
+ <body>
+     <!-- Navbar -->
+   
+
+     <!-- Products -->
+     <section class="product" id="product">
+         <div class="heading">
+             <h2>Our  products</h2>
+         </div>
+         <div class="basket">
+             @if (@User.Identity.IsAuthenticated)
+             {
+                 @if (@User.IsInRole("User"))
+                 {
+                     <a asp-controller="Basket" asp-action="GetOrdersByUser"><i class='bx bx-basket'></i></a>
+                     
+                 }
+                 else
+                 {
+                     <a asp-controller="Basket" asp-action="GetAllOrders"><i class='bx bx-basket'></i></a>
+                     
+                 }
+                
+             }
+              <a asp-action="Index" asp-controller="Home"><i class='bx bx-home'></i></a>
+            
+
+         </div>
+         
+        @foreach (Product item in Model)
+        {
+                    <div class="products-container">
+                        <div class="box">
+                                <img src="@item.Image"/>
+                            <h3>@item.Name</h3>
+                            <p>@item.Description</p>
+                            <div class="content">
+                             <span>$@item.Price</span>
+                             @if(User.Identity.IsAuthenticated)
+                             {
+                                          <a type="button" asp-controller="Basket" asp-action="AddToBasket"  asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Basket</a>
+                             }
+                            
+                             @if(User.IsInRole("Admin"))
+                             {
+                                         <a class="btn btn-sm btn-outline-secondary" asp-controller="Product" asp-action="Update"  asp-route-id="@item.Id">Edit</a>
+
+                                    <a  asp-controller="Product" asp-action="Delete" class="btn btn-sm btn-outline-secondary"   asp-route-id="@item.Id">Delete</a>
+                             }
+                             
+                            
+                            </div>
+                     </div>
+
+                </div> 
+        }
+         <!-- Container -->
+
+
+     </section>
+
+
+
+
+ </body>
+</html>
+
